@@ -60,10 +60,13 @@ class ConvNN(torch.nn.Module):
 
         return x
 
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Cargar el modelo guardado
 
 model = ConvNN(torch.nn.ReLU(),nn=164,dropout_rate = 0.782236508846162)
 model.load_state_dict(torch.load('modelos/brain_tumor_cnn_model_15.pt')) 
+model.to(device)
 model.eval()  # Poner el modelo en modo de evaluación
 
 # Definir las transformaciones necesarias (ajustar según lo que espera tu modelo)
